@@ -12,22 +12,46 @@
     </div>
     <hr>
     {{ age > 17 ? 'volljährig' : 'nicht volljährig'}}
+    <ul>
+      <li v-for="(city, index) in cities" v-bind:key="city.id">
+        {{++index}}. {{city.name}}
+      </li>
+    </ul>
+    
+    <div class="list">
+     <ToDoList />
+    <button @click="test">Test</button>
+    </div>
   </div>
+  
 </template>
 
 <script>
-
+import ToDoList from "./components/ToDoList"
 export default {
   name: 'App',
   data: () => ({
     name_first: 'Micha',
     name_last: 'Köhler',
-    age: 49
+    age: 49,
+    cities: [
+      {id: 1, name: "Stuttgart"},
+      {id: 2, name: "Frankfurt"},
+      {id: 3, name: "Paris"}
+    ],
   }),
   computed: {
     fullName() {
       return this.name_first + " " + this.name_last;
     }
+  },
+  methods: {
+    test() {
+      alert("Hi");
+    }
+  },
+  components: {
+    ToDoList
   }
 }
 </script>
@@ -45,5 +69,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.list {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+.finishedTask {
+  text-decoration: line-through;
 }
 </style>
