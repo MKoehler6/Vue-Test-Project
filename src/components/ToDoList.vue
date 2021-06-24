@@ -3,6 +3,7 @@
       <ToDoListItem 
         v-for="todo in todos" v-bind:key="todo.id"
         :item="todo"
+        @toggle="toggleListItem"
       />  
       
     </ul>
@@ -21,6 +22,11 @@ export default {
     name: "ToDoList",
     components: {
         ToDoListItem
+    },
+    methods: {
+        toggleListItem(el) {
+            el.finished = !el.finished // todo erledigt oder nicht erledigt setzen
+        }
     }
 }
 </script>

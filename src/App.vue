@@ -4,6 +4,7 @@
     {{ `${age} ` }},
     vor 18 Jahren:  
     {{ `${age - 18}` }} <hr>
+    <a href="?seite=23" @click.prevent="test">Zu Seite 23</a> <!-- prevent verhindert normale Ausführung (anhängen seite=23) -->
     <div class="age">
       {{ fullName }}
       <span v-if="age < 18"> <!-- span wird nur angezeigt bei if true -->
@@ -22,12 +23,27 @@
      <ToDoList />
     <button @click="test">Test</button>
     </div>
+    <div>
+      <ConnectToFlask />
+    </div>
+    <hr>
+    <div>
+      <navigation-link url="https://www.koehlerplay.de">
+        👼
+        Zur Webcam
+        <template v-slot:image>
+          <img src="https://www.koehlerplay.de/webcam.jpg" height="80px" />
+        </template>
+        </navigation-link>
+    </div>
   </div>
   
 </template>
 
 <script>
 import ToDoList from "./components/ToDoList"
+import ConnectToFlask from "./components/ConnectToFlask"
+import NavigationLink from "./components/NavigationLink"
 export default {
   name: 'App',
   data: () => ({
@@ -51,7 +67,9 @@ export default {
     }
   },
   components: {
-    ToDoList
+    ToDoList,
+    ConnectToFlask,
+    NavigationLink
   }
 }
 </script>
