@@ -1,10 +1,9 @@
 <template>
     <div>
         <button @click="getProducts">Update Table</button>
-        <form action="postProduct">
+        <form id="product" @submit.prevent="processForm">
             <label for="product">Produkt eingeben</label><br>
-            <input type="text" id="product" name="product"><br>
-            <input type="submit" value="Submit">
+            <input type="text" id="product" class="input" name="productName" v-model="productName"><br>
         </form>
         <table border=1>
             <thead>
@@ -28,7 +27,8 @@ import axios from 'axios';
 
 export default {
     data: () => ({
-        items: []
+        items: [],
+        productName: ''
     }), 
     methods: {
         getProducts() {
@@ -46,6 +46,17 @@ export default {
             const path = 'http://localhost:5000/api/shop/products/';
             let response = await axios.get(path);
             this.items = response.data.items
+        },
+        postProduct() {
+            axios.post('http://localhost:5000/api/shop/products/', {
+                name: this.productName
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         }
     },
     created() {
