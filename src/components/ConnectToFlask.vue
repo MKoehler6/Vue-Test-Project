@@ -1,9 +1,10 @@
 <template>
     <div>
         <button @click="getProducts">Update Table</button>
-        <form id="product" @submit.prevent="processForm">
+        <form id="product" @submit.prevent="postProduct">
             <label for="product">Produkt eingeben</label><br>
             <input type="text" id="product" class="input" name="productName" v-model="productName"><br>
+            <button type="submit">Submit</button>
         </form>
         <table border=1>
             <thead>
@@ -32,7 +33,7 @@ export default {
     }), 
     methods: {
         getProducts() {
-            const path = 'http://localhost:5000/api/shop/products/'; // bei Flask muss CORS aktiv sein;
+            const path = 'http://localhost:5000/api/shop/products/?page=2&items_per_page=10'; // bei Flask muss CORS aktiv sein;
             axios.get(path)
                 .then((res) => {
                     this.items = res.data.items;
