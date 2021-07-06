@@ -23,7 +23,7 @@
      <ToDoList />
     <button @click="test">Test</button>
     </div>
-    <div>
+    <div class="table">
       <ConnectToFlask />
     </div>
     <hr>
@@ -35,6 +35,7 @@
           <img src="https://www.koehlerplay.de/webcam.jpg" height="80px" />
         </template>
         </navigation-link>
+        <img src="./assets/G.png" height="200px"/>
     </div>
   </div>
   
@@ -92,7 +93,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: left;
+  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }

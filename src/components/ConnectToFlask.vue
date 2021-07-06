@@ -33,7 +33,7 @@ export default {
     }), 
     methods: {
         getProducts() {
-            const path = 'http://localhost:5000/api/shop/products/?page=2&items_per_page=10'; // bei Flask muss CORS aktiv sein;
+            const path = 'http://localhost:5000/api/shop/products/?page=3&items_per_page=10'; // bei Flask muss CORS aktiv sein;
             axios.get(path)
                 .then((res) => {
                     this.items = res.data.items;
@@ -58,6 +58,7 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
+            this.getProducts();
         }
     },
     created() {
@@ -73,6 +74,8 @@ export default {
         border-collapse: collapse;
         border: 3px solid #44475C;
         margin: 10px 10px 0 10px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     table th {
